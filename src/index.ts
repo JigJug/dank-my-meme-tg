@@ -33,6 +33,7 @@ bot.command('submit', (ctx) => {
   //pic - meme
   //add to contest
   //
+  
 })
 
 //-24 hour countdown-
