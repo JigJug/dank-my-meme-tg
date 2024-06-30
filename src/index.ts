@@ -16,7 +16,7 @@ if(BOT_TOKEN === undefined) process.exit(".env errror")
 const bot = new Bot(BOT_TOKEN)
 
 function replyStrartContest(){
-  return `please go to: https://dankmymeme.xyz to start a contest`
+  return `please go to: https://www.dankmymeme.xyz to start a contest`
 }
 
 
