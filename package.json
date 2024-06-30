@@ -10,12 +10,11 @@
   },
   "author": "JigJug",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.14.9"
-  },
+  "devDependencies": {},
   "dependencies": {
     "dotenv": "^16.4.5",
     "grammy": "^1.25.2",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.2",
+    "@types/node": "^20.14.9"
   }
 }
