@@ -15,10 +15,14 @@ if(BOT_TOKEN === undefined) process.exit(".env errror")
 
 const bot = new Bot(BOT_TOKEN)
 
+function replyStrartContest(){
+  return `please go to: https://dank-my-meme.xyz to start a contest`
+}
+
 
 bot.command('startcontest', (ctx) => {
   console.log(ctx.channelPost)
-  ctx.channelPost?.message_id? ctx.reply('contest started') : ctx.reply('gay')
+  ctx.channelPost?.message_id? ctx.reply(replyStrartContest()) : ctx.reply('gay')
   //admin only
   //save channel id
   //start 24 hour countdown for submissions
