@@ -16,7 +16,7 @@ if(BOT_TOKEN === undefined) process.exit(".env errror")
 const bot = new Bot(BOT_TOKEN)
 
 
-bot.command('start-contest', (ctx) => {
+bot.command('startcontest', (ctx) => {
   console.log(ctx.channelPost)
   ctx.channelPost?.message_id? ctx.reply('contest started') : ctx.reply('gay')
   //admin only
@@ -28,13 +28,20 @@ bot.command('start-contest', (ctx) => {
 })
 
 bot.command('submit', (ctx) => {
+  ctx.channelPost?.message_id? ctx.reply('meme submitted') : ctx.reply('big gay')
   //any user - need to be aproved by admin?
   //save tg user id
   //pic - meme
   //add to contest
   //
-  
+
 })
+
+bot.on('message', (ctx) => {
+  ctx.reply('helloooo')
+})
+
+bot.start()
 
 //-24 hour countdown-
 //class? 
