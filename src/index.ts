@@ -1,5 +1,6 @@
 import {Bot } from "grammy"
-import dotenv from "dotenv"
+import { BOT_TOKEN } from "./configs/config"
+import { ContestController } from "./contest"
 
 /*
   Dank My Meme Telegram Bot
@@ -8,10 +9,9 @@ import dotenv from "dotenv"
   - 
 */
 
-dotenv.config()
+if(BOT_TOKEN === undefined) process.exit(".env errror");
 
-const BOT_TOKEN = process.env.BOT_TOKEN
-if(BOT_TOKEN === undefined) process.exit(".env errror")
+const cc = new ContestController()
 
 const bot = new Bot(BOT_TOKEN)
 
@@ -20,9 +20,47 @@ function replyStrartContest(){
 }
 
 
+bot.command('start', (ctx) => {
+
+  console.log(ctx.channelPost);
+
+  const chatId = ctx.chatId;
+
+  if(ctx.channelPost?.message_id){
+    if(chatId in cc.channels) ctx.reply("You already started me dumbass");
+    else cc.addChannel(chatId.toString())
+  }
+  else ctx.reply('gay')
+  //admin only
+  //save channel id
+  //start 24 hour countdown for submissions
+  // reply address for prizepool
+  // 24 hours to add prizepool
+
+})
+
+
 bot.command('startcontest', (ctx) => {
+
   console.log(ctx.channelPost)
-  ctx.channelPost?.message_id? ctx.reply(replyStrartContest()) : ctx.reply('gay')
+
+  const chatId = ctx.chatId;
+
+  const formData = {
+    tokenAddress: "",
+    name: ctx.chat.title!,
+    startDateTime: "",
+    endDateTime: "",
+    entryFee: "",
+    votingFee: "",
+    winnerPercentage: "0",
+    numberOfLuckyVoters: "0"
+  }
+
+  if(ctx.channelPost?.message_id){
+    cc.channels[chatId].createContest(formData)
+  }
+  else ctx.reply('big gay')
   //admin only
   //save channel id
   //start 24 hour countdown for submissions
